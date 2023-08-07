@@ -26,6 +26,7 @@ import sys
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5 import uic
+from PyQt5.QtGui import *
 from Kiwoom import *
 
 form_class =uic.loadUiType("./resource/ui/pytrader.ui")[0]
@@ -42,6 +43,8 @@ class MyWindow(QMainWindow, form_class):
 
         self.kiwoom = Kiwoom()
         self.kiwoom.comm_connect() # Todo: 그냥 종료 눌렀을 경우 루프 탈출 불가 문제
+
+        self.init_main_design()
 
         self.status_timer = QTimer(self)
         self.status_timer.start(1000)
@@ -64,6 +67,14 @@ class MyWindow(QMainWindow, form_class):
         self.autocheck_timer.timeout.connect(self.autocheck_timeout)
 
         self.load_buy_sell_list()
+
+    def init_main_design(self):
+        main_anim_rsc = QMovie("./resource/img/gomars.gif")
+        self.main_anim.setMovie(main_anim_rsc)
+        main_anim_rsc.start()
+
+        main_img_rsc = QPixmap("./resource/img/gazua.jpg")
+        self.main_img.setPixmap(main_img_rsc)
 
     def init_account_selector(self):
         accounts_num = int(self.kiwoom.get_login_info("ACCOUNT_CNT"))
