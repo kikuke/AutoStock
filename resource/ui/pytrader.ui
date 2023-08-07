@@ -6,12 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>890</width>
-    <height>534</height>
+    <width>891</width>
+    <height>755</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>AutoStock v0.3</string>
+   <string>AutoStock v0.4</string>
   </property>
   <property name="windowIcon">
    <iconset>
@@ -246,7 +246,7 @@
       <x>240</x>
       <y>10</y>
       <width>641</width>
-      <height>451</height>
+      <height>481</height>
      </rect>
     </property>
     <property name="title">
@@ -336,32 +336,85 @@
       </property>
      </column>
     </widget>
+    <widget class="QCheckBox" name="autocheck_checkbox">
+     <property name="geometry">
+      <rect>
+       <x>460</x>
+       <y>450</y>
+       <width>81</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>실시간 조회</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="check_button">
+     <property name="geometry">
+      <rect>
+       <x>550</x>
+       <y>450</y>
+       <width>75</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>조회</string>
+     </property>
+    </widget>
    </widget>
-   <widget class="QCheckBox" name="autocheck_checkbox">
+   <widget class="QGroupBox" name="groupBox_3">
     <property name="geometry">
      <rect>
-      <x>700</x>
-      <y>470</y>
-      <width>81</width>
-      <height>16</height>
+      <x>240</x>
+      <y>500</y>
+      <width>641</width>
+      <height>231</height>
      </rect>
     </property>
-    <property name="text">
-     <string>실시간 조회</string>
+    <property name="title">
+     <string>자동 종목 선정 리스트</string>
     </property>
-   </widget>
-   <widget class="QPushButton" name="check_button">
-    <property name="geometry">
-     <rect>
-      <x>790</x>
-      <y>470</y>
-      <width>75</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>조회</string>
-    </property>
+    <widget class="QTableWidget" name="auto_holdings_table">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>20</y>
+       <width>621</width>
+       <height>201</height>
+      </rect>
+     </property>
+     <column>
+      <property name="text">
+       <string>주문유형</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>종목명</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>호가구분</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>수량</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>가격</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>상태</string>
+      </property>
+     </column>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -369,7 +422,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>890</width>
+     <width>891</width>
      <height>21</height>
     </rect>
    </property>

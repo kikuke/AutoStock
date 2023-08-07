@@ -58,6 +58,8 @@ class MyWindow(QMainWindow, form_class):
         self.autocheck_timer.start(1000*3)
         self.autocheck_timer.timeout.connect(self.autocheck_timeout)
 
+        self.load_buy_sell_list()
+
     def init_account_selector(self):
         accounts_num = int(self.kiwoom.get_login_info("ACCOUNT_CNT"))
         accounts = self.kiwoom.get_login_info("ACCNO")
@@ -139,6 +141,36 @@ class MyWindow(QMainWindow, form_class):
                 self.holdings_table.setItem(j, i, item)
         
         self.holdings_table.resizeRowsToContents()
+
+    def load_buy_sell_list(self):
+        f = open("buy_list.txt", "rt")
+        buy_list = f.readlines()
+        f.close()
+
+        f = open("sell_list.txt", "rt")
+        sell_list = f.readlines()
+        f.close()
+
+        self.add_auto_holdings_table(buy_list)
+        self.add_auto_holdings_table(sell_list)
+    
+    def add_auto_holdings_table(self, addList):
+        nowRowCount = self.auto_holdings_table.rowCount()
+        listCount = len(addList)
+
+        self.auto_holdings_table.setRowCount(nowRowCount + listCount)
+
+        for j in range(listCount):
+            row_data = addList[j]
+            split_row_data = row_data.split(';')
+            split_row_data[1] = self.kiwoom.get_master_code_name(split_row_data[1].rsplit())
+
+            for i in range(len(split_row_data)):
+                item = QTableWidgetItem(split_row_data[i].rstrip())
+                item.setTextAlignment(Qt.AlignVCenter | Qt.AlignRight)
+                self.auto_holdings_table.setItem(nowRowCount + j, i, item)
+        
+        self.auto_holdings_table.resizeRowsToContents()
 
 
 if __name__ == "__main__":
